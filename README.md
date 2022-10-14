@@ -1,10 +1,3 @@
-
-
-https://user-images.githubusercontent.com/90367338/195789367-cafdb9b5-6dae-4cff-8290-967f1c6f0a5c.mov
-
-
-
-
 Fourier_PINN
 ===========================
 This document is used to show a detailed description of the Fourier_PINN project.
@@ -12,7 +5,11 @@ This document is used to show a detailed description of the Fourier_PINN project
 ****
 
 
-https://user-images.githubusercontent.com/90367338/195787409-cfd64206-15aa-422e-a5f0-c2bd305f27d3.mp4
+
+
+https://user-images.githubusercontent.com/90367338/195791011-51a99fb6-8f34-47c7-8dcd-4915b4541161.mp4
+
+
 
 
 
