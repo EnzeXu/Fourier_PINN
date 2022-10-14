@@ -6,6 +6,8 @@ This document is used to show a detailed description of the Fourier_PINN project
 
 https://raw.githubusercontent.com/EnzeXu/Fourier_PINN/master/readme_video.mp4
 
+https://github.com/EnzeXu/Fourier_PINN/blob/bf4330e69b60d87e7cc6bfba471db8cfc803ad71/readme_video.mp4
+
 ****
  
 | Project Name | Fourier_PINN |
