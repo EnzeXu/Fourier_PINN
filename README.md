@@ -4,7 +4,11 @@ This document is used to show a detailed description of the Fourier_PINN project
 
 ****
 
-https://user-images.githubusercontent.com/90367338/195786976-9ee19a92-6865-4f86-a08c-161fa7fc51f2.mp4
+
+
+https://user-images.githubusercontent.com/90367338/195787203-1f175e36-e042-41f2-a56b-77514c98d463.mp4
+
+
 
 ****
  
