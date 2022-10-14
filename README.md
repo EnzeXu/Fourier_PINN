@@ -4,9 +4,9 @@ This document is used to show a detailed description of the Fourier_PINN project
 
 ****
 
-https://user-images.githubusercontent.com/58986949/115314310-805b2780-a1a7-11eb-8558-648a367ea231.mp4
+https://raw.githubusercontent.com/EnzeXu/Fourier_PINN/master/readme_video.mp4
 
-https://github.com/EnzeXu/Fourier_PINN/blob/main/readme_video.mp4
+****
  
 | Project Name | Fourier_PINN |
 |--------------|---------|
