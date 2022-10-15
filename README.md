@@ -17,9 +17,9 @@ https://user-images.githubusercontent.com/90367338/195965938-8b97b3d6-3039-4a14-
 ****
  
 | Project Name | Fourier_PINN |
-|--------------|---------|
-| Author       | --      |
-| Version      | --      |
+|--------------|--------------|
+| Author       | Enze Xu      |
+| Version      | v1.2.0       |
 
 ****
 # Catalogue
