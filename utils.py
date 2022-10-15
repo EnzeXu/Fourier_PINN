@@ -364,7 +364,147 @@ class MultiSubplotDraw:
         plt.tick_params(labelsize=number_label_size)
 
 
+"""
+fig = plt.figure()
+ax = fig.gca(projection="3d")
+ax.plot(X, Y, Z)
+plt.draw()
+plt.show()
+
+plt.figure(figsize=(16, 9))
+plt.plot(np.asarray([[x, y, z] for x, y, z in zip(X, Y, Z)]))
+plt.show()
+plt.clf()"""
+
+
+def draw_three_dimension(
+        lists,
+        color_list,
+        line_style_list,
+        legend_list=None,
+        fig_title=None,
+        fig_x_label="X",
+        fig_y_label="Y",
+        fig_z_label="Z",
+        show_flag=True,
+        save_flag=False,
+        save_path=None,
+        save_dpi=300,
+        fig_title_size=20,
+        lim_adaptive_flag=False,
+        x_lim=(-25, 25),
+        y_lim=(-25, 25),
+        z_lim=(0, 50),
+        line_width=1,
+        alpha=1,
+        x_label_size=15,
+        y_label_size=15,
+        z_label_size=15,
+        number_label_size=15,
+        fig_size=(8, 6),
+        tight_layout_flag=True,
+) -> None:
+    for one_list in lists:
+        assert len(one_list) == 3, "3D data please!"
+        assert len(one_list[0]) == len(one_list[1]) == len(one_list[2]), "Dimension of X, Y, Z should be the same"
+    fig = plt.figure(figsize=fig_size)
+    ax = fig.add_subplot(111, projection='3d')
+    for i, one_list in enumerate(lists):
+        ax.plot(one_list[0], one_list[1], one_list[2], linewidth=line_width, alpha=alpha, c=color_list[i], linestyle=line_style_list[i], label=legend_list[i] if legend_list else None)
+    ax.legend(loc="lower left")
+    ax.set_xlabel(fig_x_label, fontsize=x_label_size)
+    ax.set_ylabel(fig_y_label, fontsize=y_label_size)
+    ax.set_zlabel(fig_z_label, fontsize=z_label_size)
+    if lim_adaptive_flag:
+        x_lim = (min([min(item[0]) for item in lists]), max([max(item[0]) for item in lists]))
+        y_lim = (min([min(item[1]) for item in lists]), max([max(item[1]) for item in lists]))
+        z_lim = (min([min(item[2]) for item in lists]), max([max(item[2]) for item in lists]))
+    ax.set_xlim(x_lim)
+    ax.set_ylim(y_lim)
+    ax.set_zlim(z_lim)
+    if fig_title:
+        ax.set_title(fig_title, fontsize=fig_title_size)
+    plt.tick_params(labelsize=number_label_size)
+    if tight_layout_flag:
+        plt.tight_layout()
+    if save_flag:
+        plt.savefig(save_path, dpi=save_dpi)
+    if show_flag:
+        plt.show()
+    plt.clf()
+    plt.close()
+
+
 if __name__ == "__main__":
+    T = 10.0
+    T_unit = 1e-5
+    X_start = 6.0
+    Y_start = 6.0
+    Z_start = 15.0
+
+    rho = 14#28.0
+    sigma = 10#10.0
+    beta = 2.667#8.0 / 3.0
+
+    X = [X_start]
+    Y = [Y_start]
+    Z = [Z_start]
+
+
+    for i in range(1, int(T / T_unit) + 1):
+        X_old, Y_old, Z_old = X[-1], Y[-1], Z[-1]
+
+        X_new = X_old + (sigma * (Y_old - X_old) ) * T_unit
+        Y_new = Y_old + (X_old * (rho - Z_old) - Y_old ) * T_unit
+        Z_new = Z_old + (X_old * Y_old - beta * Z_old ) * T_unit
+        X.append(X_new)
+        Y.append(Y_new)
+        Z.append(Z_new)
+    X = np.asarray(X)
+    Y = np.asarray(Y)
+    Z = np.asarray(Z)
+    print(list(X[:10]), "...", list(X[-10:]))
+    print(list(Y[:10]), "...", list(Y[-10:]))
+    print(list(Z[:10]), "...", list(Z[-10:]))
+    # plt.figure()
+    # plt.plot(X, label="X")
+    # plt.legend()
+    # plt.show()
+    # plt.close()
+    #
+    # plt.figure()
+    # plt.plot(Y, label="Y")
+    # plt.legend()
+    # plt.show()
+    # plt.close()
+    #
+    # plt.figure()
+    # plt.plot(Z, label="Z")
+    # plt.legend()
+    # plt.show()
+    # plt.close()
+
+
+    offset = 2
+    draw_three_dimension(
+        lists=[[X, Y, Z], [X+offset, Y+offset, Z+offset]],
+        legend_list=["true", "pred"],
+        color_list=["r", "b"],
+        line_style_list=["dashed", "solid"],
+        fig_title="test",
+        alpha=0.7,
+        show_flag=True,
+        save_flag=False,
+        save_path=None,
+        fig_size=(8, 6),
+        line_width=0.5,
+        lim_adaptive_flag=True
+    )
+
+    print(min(X), max(X))
+    print(min(Y), max(Y))
+    print(min(Z), max(Z))
+
     # x_list = range(10000)
     # y_lists = [
     #     [0.005 * i + 10 for i in x_list],
@@ -395,42 +535,44 @@ if __name__ == "__main__":
     #     tight_layout_flag=True
     # )
 
-    x_list = range(10000)
-    y_lists = [
-        [0.005 * i + 10 for i in x_list],
-        [-0.005 * i - 30 for i in x_list],
-        # [0.008 * i - 10 for i in x_list],
-        # [-0.006 * i - 20 for i in x_list],
-        # [-0.001 * i - 5 for i in x_list],
-        # [-0.003 * i - 1 for i in x_list]
-    ]
+    # x_list = range(10000)
+    # y_lists = [
+    #     [0.005 * i + 10 for i in x_list],
+    #     [-0.005 * i - 30 for i in x_list],
+    #     # [0.008 * i - 10 for i in x_list],
+    #     # [-0.006 * i - 20 for i in x_list],
+    #     # [-0.001 * i - 5 for i in x_list],
+    #     # [-0.003 * i - 1 for i in x_list]
+    # ]
+    #
+    # m = MultiSubplotDraw(row=3, col=1, tight_layout_flag=True)
+    # m.add_subplot(
+    #     y_lists=y_lists,
+    #     x_list=x_list,
+    #     color_list=["r", "b"],
+    #     legend_list=["111", "222"],
+    #     line_style_list=["dashed", "solid"],
+    #     fig_title="hello world")
+    #
+    # m.add_subplot(
+    #     y_lists=y_lists,
+    #     x_list=x_list,
+    #     color_list=["yellow", "b"],
+    #     legend_list=["111", "222"],
+    #     line_style_list=["dashed", "solid"],
+    #     fig_title="hello world")
+    #
+    # m.add_subplot(
+    #     y_lists=y_lists,
+    #     x_list=x_list,
+    #     color_list=["g", "grey"],
+    #     legend_list=["111", "222"],
+    #     line_style_list=["dashed", "solid"],
+    #     fig_title="hello world")
+    #
+    # m.draw()
 
-    m = MultiSubplotDraw(row=3, col=1, tight_layout_flag=True)
-    m.add_subplot(
-        y_lists=y_lists,
-        x_list=x_list,
-        color_list=["r", "b"],
-        legend_list=["111", "222"],
-        line_style_list=["dashed", "solid"],
-        fig_title="hello world")
 
-    m.add_subplot(
-        y_lists=y_lists,
-        x_list=x_list,
-        color_list=["yellow", "b"],
-        legend_list=["111", "222"],
-        line_style_list=["dashed", "solid"],
-        fig_title="hello world")
-
-    m.add_subplot(
-        y_lists=y_lists,
-        x_list=x_list,
-        color_list=["g", "grey"],
-        legend_list=["111", "222"],
-        line_style_list=["dashed", "solid"],
-        fig_title="hello world")
-
-    m.draw()
     # color_list = ["red", "blue"]#, "green", "cyan", "black", "purple"]
     # line_style_list = ["dashed", "dotted"]#, "dashdot", "dashdot", "dashdot", "dashdot"]
     # legend_list = ["red line", "blue line"]#, "green line", "cyan line", "black line", "purple line"]
