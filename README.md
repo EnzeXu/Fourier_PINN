@@ -1,6 +1,6 @@
 Fourier_PINN
 ===========================
-This document is used to show a detailed description of the Fourier_PINN project.
+This document is used as a detailed description of the Fourier_PINN project.
 
 ****
 
