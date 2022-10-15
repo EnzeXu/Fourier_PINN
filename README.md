@@ -3,10 +3,15 @@ Fourier_PINN
 This document is used to show a detailed description of the Fourier_PINN project.
 
 ****
+Demo: PP Model
 
-https://user-images.githubusercontent.com/90367338/195798110-b5271fa8-e6fa-4f39-a0bf-c34351d8033f.mp4
+https://user-images.githubusercontent.com/90367338/195965911-765e679c-3ead-4015-a841-d9d955cbf68f.mp4
 
-![demo_loss](https://user-images.githubusercontent.com/90367338/195798130-3d9814de-94af-47a3-9c13-7018ff780a8b.png)
+****
+
+Demo: Lorenz Model
+
+https://user-images.githubusercontent.com/90367338/195965938-8b97b3d6-3039-4a14-985e-099ce1090c0b.mp4
 
 
 ****
