@@ -8,7 +8,7 @@ from torch import nn
 
 
 from utils import draw_two_dimension, MultiSubplotDraw
-from config import Config
+from config_PP import Config
 
 
 class SpectralConv1d(nn.Module):

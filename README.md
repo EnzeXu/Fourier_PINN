@@ -44,7 +44,8 @@ $ source venv/bin/activate
 
 Run
 ```shell
-(venv) $ python3 model.py
+(venv) $ python3 model_PP.py
+(venv) $ python3 model_Lorenz.py
 ```
 
 Exit virtual environment
