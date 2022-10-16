@@ -39,8 +39,8 @@ https://user-images.githubusercontent.com/90367338/196028449-c348fb8b-ff31-4a78-
 
 ****
 # Introduction to files
-1. config.py: model configurations
-2. model.py: model class
+1. config_{XX}.py: XX model configurations
+2. model_{XX}.py: XX model class
 3. utils.py: functions for plotting
 
 ****

@@ -81,14 +81,14 @@ class Config:
             self.truth = torchdiffeq.odeint(self.pend, self.y0.cpu(), torch.tensor(self.t), method='euler').to(
                 self.device)
             np.save(truth_path, self.truth.cpu().detach().numpy())
-        print("y0:")
-        self.draw_turing(self.y0)
-        print("Truth:")
+        # print("y0:")
+        # self.draw_turing(self.y0)
+        # print("Truth:")
         print("Truth U: max={0:.6f} min={1:.6f}".format(torch.max(self.truth[:, :, :, 0]).item(),
                                                         torch.min(self.truth[:, :, :, 0]).item()))
         print("Truth V: max={0:.6f} min={1:.6f}".format(torch.max(self.truth[:, :, :, 1]).item(),
                                                         torch.min(self.truth[:, :, :, 1]).item()))
-        self.draw_turing(self.truth[-1])
+        # self.draw_turing(self.truth[-1])
 
         # self.modes = 64  # Number of Fourier modes to multiply, at most floor(N/2) + 1
         # self.width = 16
