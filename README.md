@@ -19,7 +19,8 @@ https://user-images.githubusercontent.com/90367338/195965911-765e679c-3ead-4015-
 ****
 
 Demo: Turing Pattern Model
-https://user-images.githubusercontent.com/90367338/196028339-28456018-8f87-4240-a97f-f089bd9efda8.mp4
+https://user-images.githubusercontent.com/90367338/196028404-3685ce0c-42e4-420c-8573-6863c67d9fd2.mp4
+
 
 
 ****
