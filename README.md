@@ -17,6 +17,12 @@ Demo: Predator–Prey Model
 https://user-images.githubusercontent.com/90367338/195965911-765e679c-3ead-4015-a841-d9d955cbf68f.mp4
 
 ****
+
+Demo: Turing Pattern Model
+https://user-images.githubusercontent.com/90367338/196028339-28456018-8f87-4240-a97f-f089bd9efda8.mp4
+
+
+****
  
 | Project Name | Fourier_PINN |
 |--------------|--------------|
@@ -53,6 +59,7 @@ Run
 ```shell
 (venv) $ python3 model_PP.py
 (venv) $ python3 model_Lorenz.py
+(venv) $ python3 model_Turing.py
 ```
 
 Exit virtual environment
