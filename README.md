@@ -19,7 +19,8 @@ https://user-images.githubusercontent.com/90367338/195965911-765e679c-3ead-4015-
 ****
 
 Demo: Turing Pattern Model
-https://user-images.githubusercontent.com/90367338/196028404-3685ce0c-42e4-420c-8573-6863c67d9fd2.mp4
+
+https://user-images.githubusercontent.com/90367338/196028449-c348fb8b-ff31-4a78-96a0-d850bf9e0774.mp4
 
 
 
@@ -28,7 +29,7 @@ https://user-images.githubusercontent.com/90367338/196028404-3685ce0c-42e4-420c-
 | Project Name | Fourier_PINN |
 |--------------|--------------|
 | Author       | Enze Xu      |
-| Version      | v1.2.0       |
+| Version      | v1.3.0       |
 
 ****
 # Catalogue
