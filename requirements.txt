@@ -2,3 +2,4 @@ numpy
 matplotlib==3.5.1
 scipy
 torch==1.12.1
+torchdiffeq
