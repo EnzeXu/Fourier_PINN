@@ -32,6 +32,7 @@ def draw_two_dimension(
     legend_ncol=3,
     legend_fontsize=15,
     fig_title=None,
+    legend_loc="best",
     fig_x_label="time",
     fig_y_label="val",
     show_flag=True,
@@ -104,9 +105,9 @@ def draw_two_dimension(
     plt.tick_params(labelsize=number_label_size)
     if legend_list:
         if legend_location == "fixed":
-            plt.legend(legend_list, fontsize=legend_fontsize, bbox_to_anchor=legend_bbox_to_anchor, fancybox=True, ncol=legend_ncol)
+            plt.legend(legend_list, fontsize=legend_fontsize, bbox_to_anchor=legend_bbox_to_anchor, fancybox=True, ncol=legend_ncol, loc=legend_loc)
         else:
-            plt.legend(legend_list, fontsize=legend_fontsize)
+            plt.legend(legend_list, fontsize=legend_fontsize, loc=legend_loc)
     if fig_title:
         plt.title(fig_title, fontsize=fig_title_size)
     if fig_grid:
@@ -336,7 +337,11 @@ class MultiSubplotDraw:
             x_ticks=None,
             y_ticks_set_flag=False,
             y_ticks=None,
-    ) -> None:
+            scatter_period=0,
+            scatter_marker=None,
+            scatter_marker_size=None,
+            scatter_marker_color=None
+    ):
         # assert len(list(y_lists[0])) == len(list(x_list)), "Dimension of y should be same to that of x"
         assert len(y_lists) == len(line_style_list) == len(color_list), "number of lines should be fixed"
         y_count = len(y_lists)
@@ -344,7 +349,16 @@ class MultiSubplotDraw:
         ax = self.fig.add_subplot(self.row, self.col, self.subplot_index)
         for i in range(y_count):
             draw_length = min(len(x_list), len(y_lists[i]))
-            ax.plot(x_list[:draw_length], y_lists[i][:draw_length], markersize=marker_size, linewidth=line_width, c=color_list[i], linestyle=line_style_list[i])
+            # print("x_list[:draw_length]", x_list[:draw_length])
+            # print("y_lists[i][:draw_length]", y_lists[i][:draw_length])
+            # print("color_list[i]", color_list[i])
+            ax.plot(x_list[:draw_length], y_lists[i][:draw_length], markersize=marker_size, linewidth=line_width, c=color_list[i], linestyle=line_style_list[i], label=legend_list[i] if legend_list else None)
+            if scatter_period > 0:
+                scatter_x = [x_list[:draw_length][idx] for idx in range(len(x_list[:draw_length])) if idx % scatter_period == 0]
+                scatter_y = [y_lists[i][:draw_length][idx] for idx in range(len(y_lists[i][:draw_length])) if idx % scatter_period == 0]
+                print(scatter_x)
+                print(scatter_y)
+                ax.scatter(x=scatter_x, y=scatter_y, s=scatter_marker_size, c=scatter_marker_color, marker=scatter_marker, linewidths=0, zorder=10)
         ax.set_xlabel(fig_x_label, fontsize=x_label_size)
         ax.set_ylabel(fig_y_label, fontsize=y_label_size)
         if x_ticks_set_flag:
@@ -353,15 +367,16 @@ class MultiSubplotDraw:
             ax.set_yticks(y_ticks)
         if legend_list:
             if legend_location == "fixed":
-                ax.legend(legend_list, fontsize=legend_fontsize, bbox_to_anchor=legend_bbox_to_anchor, fancybox=True,
+                ax.legend(fontsize=legend_fontsize, bbox_to_anchor=legend_bbox_to_anchor, fancybox=True,
                            ncol=legend_ncol)
             else:
-                ax.legend(legend_list, fontsize=legend_fontsize)
+                ax.legend(fontsize=legend_fontsize)
         if fig_title:
             ax.set_title(fig_title, fontsize=fig_title_size)
         if fig_grid:
             ax.grid(True)
         plt.tick_params(labelsize=number_label_size)
+        return ax
 
     def add_subplot_turing(
             self,
@@ -371,13 +386,14 @@ class MultiSubplotDraw:
             fig_title=None,
             fig_title_size=20,
             number_label_size=15,
-    ) -> None:
+    ):
         self.subplot_index += 1
         ax = self.fig.add_subplot(self.row, self.col, self.subplot_index)
         im1 = ax.imshow(matrix, cmap=plt.cm.jet, vmax=v_max, vmin=v_min, aspect='auto')
         ax.set_title(fig_title, fontsize=fig_title_size)
         plt.colorbar(im1, shrink=1)
         plt.tick_params(labelsize=number_label_size)
+        return ax
 
 
 """
@@ -546,39 +562,44 @@ if __name__ == "__main__":
 
     m = MultiSubplotDraw(row=1, col=2, fig_size=(16, 7), tight_layout_flag=True)
 
-    truth = np.load("turing_truth.npy")
-    u = truth[-1, :, :, 0]
-    print(u.shape)
-    v = truth[-1, :, :, 1]
-    m.add_subplot_turing(
-        matrix=u,
-        v_max=u.max(),
-        v_min=u.min(),
-        fig_title="u")
-    m.add_subplot_turing(
-        matrix=v,
-        v_max=v.max(),
-        v_min=v.min(),
-        fig_title="v")
-    m.draw()
-    #
-    # m.add_subplot(
-    #     y_lists=y_lists,
-    #     x_list=x_list,
-    #     color_list=["yellow", "b"],
-    #     legend_list=["111", "222"],
-    #     line_style_list=["dashed", "solid"],
-    #     fig_title="hello world")
-    #
-    # m.add_subplot(
-    #     y_lists=y_lists,
-    #     x_list=x_list,
-    #     color_list=["g", "grey"],
-    #     legend_list=["111", "222"],
-    #     line_style_list=["dashed", "solid"],
-    #     fig_title="hello world")
-    #
+    # truth = np.load("turing_truth.npy")
+    # u = truth[-1, :, :, 0]
+    # print(u.shape)
+    # v = truth[-1, :, :, 1]
+    # m.add_subplot_turing(
+    #     matrix=u,
+    #     v_max=u.max(),
+    #     v_min=u.min(),
+    #     fig_title="u")
+    # m.add_subplot_turing(
+    #     matrix=v,
+    #     v_max=v.max(),
+    #     v_min=v.min(),
+    #     fig_title="v")
     # m.draw()
+
+    ax = m.add_subplot(
+        y_lists=y_lists,
+        x_list=x_list,
+        color_list=["yellow", "b"],
+        legend_list=["111", "222"],
+        line_style_list=["dashed", "solid"],
+        fig_title="hello world",
+        scatter_period=1000,
+        scatter_marker="X",
+        scatter_marker_size=100,
+        scatter_marker_color="red"
+    )
+    ax.set_title("fuck", fontsize=15)
+    m.add_subplot(
+        y_lists=y_lists,
+        x_list=x_list,
+        color_list=["g", "grey"],
+        legend_list=["111", "222"],
+        line_style_list=["dashed", "solid"],
+        fig_title="hello world")
+
+    m.draw()
 
 
     # color_list = ["red", "blue"]#, "green", "cyan", "black", "purple"]
