@@ -18,11 +18,15 @@ https://user-images.githubusercontent.com/90367338/195965911-765e679c-3ead-4015-
 
 ****
 
+Demo: Compartmental Model in Epidemiology (SIR Model)
+
+https://user-images.githubusercontent.com/90367338/196823671-819993fe-cf2a-4891-97a4-862b692005b3.mp4
+
+****
+
 Demo: Turing Pattern Model
 
 https://user-images.githubusercontent.com/90367338/196028449-c348fb8b-ff31-4a78-96a0-d850bf9e0774.mp4
-
-
 
 ****
  
