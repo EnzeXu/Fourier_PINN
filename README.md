@@ -4,6 +4,19 @@ This document is used as a detailed description of the Fourier_PINN project.
 
 ****
 
+Demo: Toggle Model
+
+https://user-images.githubusercontent.com/90367338/203161015-9bf847e1-f799-4e6b-a4ce-567d2aed3fa4.mp4
+
+****
+
+Demo: Repressilator Model
+
+
+https://user-images.githubusercontent.com/90367338/203161074-18fa2ee5-a2d8-415c-8a52-472e623541a6.mp4
+
+
+****
 
 Demo: Lorenz Model
 
@@ -28,11 +41,6 @@ Demo: Turing Pattern Model
 
 https://user-images.githubusercontent.com/90367338/196028449-c348fb8b-ff31-4a78-96a0-d850bf9e0774.mp4
 
-****
-
-Demo: Cell - Cycle Model - Failed
-
-https://user-images.githubusercontent.com/90367338/201387079-9d8f20a5-1a79-497e-a722-0f5b33d2ab67.mp4
 
 ****
  
