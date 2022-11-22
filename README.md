@@ -4,6 +4,12 @@ This document is used as a detailed description of the Fourier_PINN project.
 
 ****
 
+Demo: MPF (Two-Variable) Model
+
+https://user-images.githubusercontent.com/90367338/203432763-6c285b52-ad5a-4cc6-9a5f-178448c3c526.mp4
+
+****
+
 Demo: Toggle Model
 
 https://user-images.githubusercontent.com/90367338/203161015-9bf847e1-f799-4e6b-a4ce-567d2aed3fa4.mp4
